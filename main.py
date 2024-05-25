@@ -3,10 +3,11 @@ from camera_dump import CameraDump
 from load_config import load_config
 
 
-def load_camera(camera_uri: str, camera_name: str, interval: float):
-    frame_num: int = 0
+def main():
+    camera_uri, camera_name, interval = load_config()
     camera: CameraDump = CameraDump(camera_name=camera_name,
                                     camera_uri=camera_uri, interval=interval)
+    frame_num: int = 0
 
     while True:
         frame = camera.dump_frame()
@@ -21,12 +22,6 @@ def load_camera(camera_uri: str, camera_name: str, interval: float):
             break
 
     cv2.destroyAllWindows()
-
-
-def main():
-    camera_uri, camera_name, interval = load_config()
-    load_camera(camera_uri=camera_uri,
-                camera_name=camera_name, interval=interval)
 
 
 if __name__ == '__main__':
